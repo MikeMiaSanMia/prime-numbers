@@ -8,18 +8,12 @@ import java.util.List;
 
 public class ProcessingJSON {
     public DataDB retrieveDataFromJSON(JSONObject json) {
-        System.out.println(json.get("id"));
         String id = (String) json.get("id");
-        System.out.println(json.get("size"));
         long arrayDataLength = (long) json.get("size");
         int arrayLength = (int) arrayDataLength;
-        System.out.println(json.get("data"));
         JSONArray jsonArray = (JSONArray) json.get("data");
         Integer[] dataArray = convertJSONArrayToIntegerArray(jsonArray, arrayLength);
         DataDB dataDB = new DataDB(id, arrayLength, dataArray);
-        System.out.println(dataDB.getId());
-        System.out.println(dataDB.getArrayLength());
-        System.out.println(dataDB.getDataArray()[0]);
         return dataDB;
     }
 

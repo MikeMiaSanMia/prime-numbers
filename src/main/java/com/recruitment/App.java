@@ -9,6 +9,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.util.List;
+
 /**
  * @author Michał Bodzek
  *
@@ -26,10 +28,9 @@ public class App
             DataDB dataDB = processingJSON.retrieveDataFromJSON(json);
             PrimeNumbersService primeNumbersService = new PrimeNumbersService();
             PrimeNumbers primeNumbers = primeNumbersService.findPrimeNumbers(dataDB);
-            System.out.println(primeNumbers.getPrimeNumbersListSize());
-            for (Integer i : primeNumbers.getPrimeNumbersList()) {
-                System.out.print(i + " ");
-            }
+            primeNumbersService.printCollection(primeNumbers.getPrimeNumbersList());
+            List<Integer> solution = primeNumbersService.makeSortedUnique(primeNumbers);
+            primeNumbersService.printCollection(solution);
         } catch (ParseException pe) {
             pe.printStackTrace();
         }
