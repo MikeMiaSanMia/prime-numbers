@@ -38,8 +38,9 @@ public class PrimeNumbersService {
                 .collect(Collectors.toList());
     }
 
-    public void printCollection(List<Integer> list) {
-        System.out.println(list.size());
+    public void printCollection(List<Integer> list, String message) {
+        System.out.println(message + ": " + list.size());
+        System.out.println(message + " below: ");
         for (Integer i : list) {
             System.out.print(i + " ");
         }
