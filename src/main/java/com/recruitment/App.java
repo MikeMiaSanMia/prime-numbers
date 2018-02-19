@@ -1,5 +1,6 @@
 package com.recruitment;
 
+import com.recruitment.controller.AppLogicService;
 import com.recruitment.controller.PrimeNumbersService;
 import com.recruitment.model.ConnectDB;
 import com.recruitment.model.DataDB;
@@ -18,26 +19,10 @@ import java.util.List;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        ConnectDB connectDB = new ConnectDB();
-        String serverContent = connectDB.getServerContent();
-        JSONParser parser = new JSONParser();
-        try {
-            JSONObject json = (JSONObject) parser.parse(serverContent);
-            ProcessingJSON processingJSON = new ProcessingJSON();
-            DataDB dataDB = processingJSON.retrieveDataFromJSON(json);
-            PrimeNumbersService primeNumbersService = new PrimeNumbersService();
-            PrimeNumbers primeNumbers = primeNumbersService.findPrimeNumbers(dataDB);
-            primeNumbersService.printCollection(primeNumbers.getPrimeNumbersList(),
-                    "All prime numbers from server");
-            List<Integer> solution = primeNumbersService.makeSortedUnique(primeNumbers);
-            primeNumbersService.printCollection(solution,
-                    "Sorted and unique prime numbers from server");
-            PresentationService presentationService = new PresentationService();
-            presentationService.showResults(solution);
-        } catch (ParseException pe) {
-            pe.printStackTrace();
-        }
+    public static void main( String[] args ) {
+        AppLogicService mainApplication = new AppLogicService();
+        List<Integer> solution = mainApplication.resolve();
+        PresentationService presentationService = new PresentationService();
+        presentationService.showResults(solution);
     }
 }
