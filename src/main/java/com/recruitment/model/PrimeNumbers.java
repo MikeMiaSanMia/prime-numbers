@@ -13,10 +13,4 @@ public class PrimeNumbers {
     public void addPrimeNumber(Integer primeNumber) {
         primeNumbersList.add(primeNumber);
     }
-
-    public Integer getPrimeNumbersListSize() {
-        return primeNumbersList.size();
-    }
-
-
 }

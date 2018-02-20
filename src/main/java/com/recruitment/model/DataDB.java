@@ -5,7 +5,7 @@ public final class DataDB {
     private final Integer arrayLength;
     private final Integer[] dataArray;
 
-    DataDB(String id, Integer arrayLength, Integer[] dataArray) {
+    public DataDB(String id, Integer arrayLength, Integer[] dataArray) {
         this.id = id;
         this.arrayLength = arrayLength;
         this.dataArray = dataArray;

@@ -14,6 +14,7 @@ public class MainAppService {
             System.out.println("------------------------------- RESULTS ----------------------------------");
             appRun();
         }
+        scanner.close();
         System.exit(0);
     }
 
