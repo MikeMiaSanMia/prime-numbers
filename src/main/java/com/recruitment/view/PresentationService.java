@@ -1,6 +1,5 @@
 package com.recruitment.view;
 
-import com.recruitment.controller.AppLogicService;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -11,7 +10,6 @@ import org.jfree.data.xy.XYDataset;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,8 +19,6 @@ public class PresentationService {
     private JPanel windowContent;
     private JPanel panel;
     private JButton button;
-    List<Integer> buttonSolution;
-    boolean flag = false;
 
     public void showResults(List<Integer> list) {
         SwingUtilities.invokeLater(() -> {
@@ -30,23 +26,15 @@ public class PresentationService {
             BorderLayout borderLayout = new BorderLayout();
             windowContent.setLayout(borderLayout);
             panel = new JPanel();
-            button = new JButton("New session");
+            button = new JButton("Hello button");
             panel.add(button);
             button.addActionListener( (ActionEvent e) -> {
                         System.out.println("Hello");
-                        flag = true;
-//                        AppLogicService mainApplication = new AppLogicService();
-//                        buttonSolution = mainApplication.resolve();
                     });
-//            if (flag) {
-//                list = buttonSolution;
-//            }
             windowContent.add("North", panel);
-            Integer[] dataArray = new Integer[list.size()];
-            Integer[] integers = list.toArray(dataArray);
             int listSize = list.size();
             double[] xAxisGenerator = generateXAxis(listSize);
-            double[] solution = Arrays.stream(integers).mapToDouble(Integer::intValue).toArray();
+            double[] solution = buildDoubleArray(list);
             JFrame frame = new JFrame("Prime Numbers Chart");
             frame.setSize(600, 400);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,12 +63,12 @@ public class PresentationService {
         final int START = 1;
         List<Integer> range = IntStream.rangeClosed(START, end)
                 .boxed().collect(Collectors.toList());
-        Integer[] dataArray = new Integer[range.size()];
-        Integer[] integers = range.toArray(dataArray);
-        return Arrays.stream(integers).mapToDouble(Integer::intValue).toArray();
+        return buildDoubleArray(range);
     }
 
-    public void actionPerformed(ActionEvent e) {
-
+    private double[] buildDoubleArray(List<Integer> list) {
+        Integer[] dataArray = new Integer[list.size()];
+        Integer[] integers = list.toArray(dataArray);
+        return Arrays.stream(integers).mapToDouble(Integer::intValue).toArray();
     }
 }

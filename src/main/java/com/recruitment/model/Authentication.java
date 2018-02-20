@@ -11,7 +11,7 @@ public class Authentication implements ClientRequestFilter {
     private final String login;
     private final String password;
 
-    public Authentication(String login, String password) {
+    Authentication(String login, String password) {
         this.login = login;
         this.password = password;
     }

@@ -13,8 +13,7 @@ public class ProcessingJSON {
         int arrayLength = (int) arrayDataLength;
         JSONArray jsonArray = (JSONArray) json.get("data");
         Integer[] dataArray = convertJSONArrayToIntegerArray(jsonArray, arrayLength);
-        DataDB dataDB = new DataDB(id, arrayLength, dataArray);
-        return dataDB;
+        return new DataDB(id, arrayLength, dataArray);
     }
 
     private Integer[] convertJSONArrayToIntegerArray(JSONArray jsonArray, int arrayLength) {
